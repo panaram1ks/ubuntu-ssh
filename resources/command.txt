@@ -1,0 +1,18 @@
+#Build docker image from Dockerfile
+sudo docker build -t ssh-connection-ubuntu .
+#Start container from builded image
+sudo docker run -d -p 2022:22 ssh-connection-ubuntu
+
+ssh -p 2022 parom@localhost
+ssh -p 2022 evgen@localhost
+#IF file key is not in .ssh/authorized_keys folder
+ssh -i ~/.ssh/id_rsa -p 2022 evgen@localhost
+ssh -v  -i ~/.ssh/authorized_keys/fordockerubuntu.pub  -p 2022 evgen@localhost
+
+
+#Stop container
+docker stop [OPTIONS] CONTAINER [CONTAINER...]
+#Delete containers
+docker rm [OPTIONS] CONTAINER [CONTAINER...]
+#Delete image
+docker image rm [OPTIONS] IMAGE [IMAGE...]
