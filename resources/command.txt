@@ -1,7 +1,7 @@
 #Build docker image from Dockerfile
 sudo docker build -t ssh-connection-ubuntu .
 #Start container from builded image
-sudo docker run -d -p 2022:22 ssh-connection-ubuntu
+sudo docker run -d -p 2022:22 ssh-connection-ubuntu .
 
 ssh -p 2022 parom@localhost
 ssh -p 2022 evgen@localhost
