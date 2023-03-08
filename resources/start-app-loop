@@ -1,0 +1,57 @@
+#!/bin/bash
+
+value=-9
+# simple if construction
+if (( value > 0 )); then
+  echo "${value} is positive 1"
+fi
+
+counter=10
+# executed until true, stop when expression false
+# while
+while (( counter > 0 )); do
+  echo "Counter value: ${counter}"
+  #counter=$(( counter - 1 ))
+  (( counter-- ))
+done
+
+# executing until false, when true stop loop
+# until
+until (( counter == 10)); do
+    echo "Counter until value: ${counter}"
+    (( counter++ ))
+done
+
+# for using index
+array=(5 90 83 23 67)
+for (( i = 0; i < "${#array[@]}"; i++ )); do
+    echo "Index value: ${i}. Array value: ${array[i]}"
+done
+
+# foreach
+for entry in {1..5} ; do
+    echo "For each value: ${entry}"
+done
+
+for value in "${array[@]}" ; do
+    echo "For each value: ${value}"
+done
+
+files=(loga logb logc logcc)
+for file in "${files[@]}" ; do
+  if [[ -f "${file}" ]]; then
+    ls -l "${file}"
+  else
+    echo "File doesn't exist: ${file}"
+    echo "Do you want to create this file? y/n"
+    read createFileAnswer
+    if [[ "${createFileAnswer}" = "y" ]]; then
+      touch "${file}"
+    fi
+  fi
+done
+
+for key in ~/.ssh/id_rsa* ; do
+    echo "Key file ${key}"
+    cat "${key}"
+done
