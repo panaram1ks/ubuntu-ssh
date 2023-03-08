@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# old stule
+#function foo() {
+#}
+
+# to show ./start-app-function f1 f34 f105
+echo "Script all functions $*"
+
+###########################################
+#  Cleanup working directory
+# Global:
+# - HOME
+# - PATH
+# Arguments:
+# - None
+###########################################
+clean(){
+  echo "Going to clean directory..."
+  echo "First argument $1"
+  echo "Second argument $2"
+  echo "Third argument $3"
+  echo "Four argument $4"
+
+  echo "All arguments $*"
+  # Or
+  # shellcheck disable=SC2145
+  echo "All arguments $@"
+
+  local index=0
+  for arg in "$@" ; do
+      echo "Index: ${index}, Argument: ${arg}"
+      (( index++ ))
+  done
+
+  #return  5
+  echo "return value from function"
+}
+
+# we can invoke function only after declaration!
+#clean
+
+# send parameters to function
+#clean program 25 98 arg4
+#echo "Clean function status: $?"
+
+result=$(clean 45 35 105)
+echo "Result work of clean() function: ${result}"
