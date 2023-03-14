@@ -31,13 +31,13 @@ init() {
   git checkout lesson-125
 
   # postgres Docker
-  sudo docker pull postgres
+  docker pull postgres
   # check if container is start use docker command
-  if sudo docker ps -a | gerp "${DB_CONTAINER_NAME}"; then
-    sudo docker start "${DB_CONTAINER_NAME}"
+  if docker ps -a | gerp "${DB_CONTAINER_NAME}"; then
+    docker start "${DB_CONTAINER_NAME}"
   else
     # use \ to continue write same command on next line
-    sudo docker run --name "${DB_CONTAINER_NAME}" \
+    docker run --name "${DB_CONTAINER_NAME}" \
       -e POSTGRES_PASSWORD=pass \
       -e POSTGRES_USER=postgres \
       -e POSTGRES_DB=postgres \
@@ -52,9 +52,9 @@ clean() {
   rm -rf "${workDir}"
 
   # stop docker container PostgreSQL
-  if sudo docker ps | grep "${DB_CONTAINER_NAME}"; then
+  if docker ps | grep "${DB_CONTAINER_NAME}"; then
     echo "Stopping container name ${DB_CONTAINER_NAME}"
-    sudo docker stop "${DB_CONTAINER_NAME}"
+    docker stop "${DB_CONTAINER_NAME}"
   fi
 }
 
@@ -70,7 +70,7 @@ build() {
 }
 
 up() {
-  cd "${workDir}/spring-starter/build/libs" || exit
+  cd "${workDir}/spring-starter/build/libs/" || exit
   java -jar spring-starter-*.jar
 }
 
